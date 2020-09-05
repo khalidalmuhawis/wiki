@@ -1,20 +1,16 @@
 from django.shortcuts import render
 from pages.models import Page
 
-def pages_list(request):
-    pages = Page.objects.all()
+def list_view(request):
     context = {
-    'pages': pages
+        "pages": Page.objects.all()
     }
+    return render(request,'list.html',context)
 
 
-    return render(request, 'list.html', context)
-
-
-def pages_detail(request, page_id):
-    page = Page.objects.get(id=page_id)
+def detail_view(request, page_id):
     context = {
-    'page': page
+    'page': Page.objects.get(id=page_id)
     }
 
     return render(request, 'detail.html', context)
